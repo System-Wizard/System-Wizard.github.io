@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Descarga</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Estilos CSS -->
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+
+    /* Header y Navbar */
+    header {
+      background-color: #323335;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .logo span {
+      background: #ef8422;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ef8422;
+    }
+
+    /* Contenedor del formulario */
+    .form-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #444;
+      min-width: 160px;
+      z-index: 1;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 0.6rem 1rem;
+      display: block;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ef8422;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #ef8422;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background-color: #d96d11;
+    }
+
+    .peso-descargas {
+      margin-top: 1rem;
+    }
+
+    .peso-descargas input {
+      margin-bottom: 0.8rem;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 0.5rem 0 0 0;
+      }
+
+      .form-actions {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER CON NAVBAR -->
+  <header>
+    <div class="logo">MiEmpresa <span>LOGO</span></div>
+    <nav>
+      <a href="#">Inicio</a>
+
+      <div class="dropdown">
+        <a href="#">Menú ▾</a>
+        <div class="dropdown-content">
+          <a href="#">Opción 1</a>
+          <a href="#">Opción 2</a>
+          <a href="#">Opción 3</a>
+        </div>
+      </div>
+    </nav>
+
+  </header>
+
+  <!-- FORMULARIO -->
+  <form class="form-container" id="form-datos">
+    <h2>Formulario de carga</h2>
+
+    <!-- Datos Generales -->
+    <div class="form-group">
+      <label for="fecha-inicio">Fecha de inicio:</label>
+      <input type="date" id="fecha-inicio" name="fecha-inicio" required>
+    </div>
+
+    <div class="form-group">
+      <label for="fecha-termino">Fecha de término:</label>
+      <input type="date" id="fecha-termino" name="fecha-termino" required>
+    </div>
+
+    <div class="form-group">
+      <label for="ubicacion">Ubicación:</label>
+      <button type="button" id="btn-ubicacion">Seleccionar ubicación</button>
+      <input type="text" id="ubicacion" name="ubicacion" readonly placeholder="Ubicación no seleccionada"
+        style="margin-top: 0.5rem;">
+    </div>
+
+    <!-- Control de Peso -->
+    <div class="form-group">
+      <label for="peso-inicial">Peso inicial (kg):</label>
+      <input type="number" id="peso-inicial" name="peso-inicial" step="0.01" required>
+    </div>
+
+    <div class="form-group">
+      <label for="descarga-numero">Número de descargas:</label>
+      <input type="number" id="descarga-numero" name="descarga-numero" min="1" required>
+    </div>
+
+    <div class="form-group peso-descargas" id="peso-descargas">
+      <!-- Inputs generados dinámicamente -->
+    </div>
+
+    <div class="form-group">
+      <label for="peso-final">Peso final (kg):</label>
+      <input type="number" id="peso-final" name="peso-final" step="0.01" required>
+    </div>
+
+    <!-- Botones -->
+    <div class="form-actions">
+      <button type="submit" id="btn-enviar">Enviar</button>
+    </div>
+  </form>
+
+  <!-- JavaScript -->
+  <script>
+    // Simular selección de ubicación
+    document.getElementById("btn-ubicacion").addEventListener("click", function () {
+      document.getElementById("ubicacion").value = "Bodega Central - Zona 3";
+    });
+
+    // Generar campos de descarga dinámicos
+    document.getElementById("descarga-numero").addEventListener("input", function () {
+      const cantidad = parseInt(this.value);
+      const contenedor = document.getElementById("peso-descargas");
+      contenedor.innerHTML = "";
+
+      if (!isNaN(cantidad) && cantidad > 0) {
+        for (let i = 1; i <= cantidad; i++) {
+          const group = document.createElement("div");
+          group.classList.add("form-group");
+
+          const label = document.createElement("label");
+          label.textContent = `Peso de descarga ${i} (kg):`;
+
+          const input = document.createElement("input");
+          input.type = "number";
+          input.step = "0.01";
+          input.name = `peso-descarga-${i}`;
+          input.required = true;
+
+          group.appendChild(label);
+          group.appendChild(input);
+          contenedor.appendChild(group);
+        }
+      }
+    });
+
+    // Enviar formulario
+    document.getElementById("form-datos").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Formulario enviado con éxito.");
+    });
+  </script>
+
+</body>
+
+</html>

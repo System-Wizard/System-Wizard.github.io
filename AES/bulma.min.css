@@ -1,0 +1,64 @@
+body{
+    color: lime;
+    background-color: #000;
+    font-style:normal;
+    font-family:'Cascadia Code';
+    text-align: center;
+}
+h1{
+    text-align: center;
+    color: lime;
+    font-family:'Cascadia Code';
+    font-size: 30px;
+}
+.desing_table{
+    border-collapse: collapse;
+    width: 100%;
+}
+th,td{
+    padding: 12px 12px;
+}
+th{
+    font-weight: bolder;
+    text-align: left;
+    border-bottom: solid 4px rgb(61, 68, 73);
+}
+td{
+    border-bottom: solid 1px rgb(61, 68, 73);
+}
+tr{
+    text-align: center;
+}
+input{
+    color: lime;
+    background-color: #11101D;
+}
+.btn{
+    background-color: #11101D;
+    transform: translateX(350%);
+}
+a{
+    color: aliceblue;
+}
+.position
+{
+    text-align: center;
+}
+textarea{
+    color: lime;
+    background-color: #11101D;
+    width: 280px;
+    min-height: 100px;
+}
+button
+{
+    color: lime;
+    background-color: #11101D;
+    width: 90px;
+    height: 25px;
+}
+hr{
+    color: lime;
+    background-color: lime;
+    height: 10px;
+}

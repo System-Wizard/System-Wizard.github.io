@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AES</title>
+	<link rel="stylesheet" href="./bulma.min.css">
+	<script type="text/javascript" src="script.js"></script>
+	<style>
+		pre {
+			overflow-x: auto;
+			white-space: pre-wrap
+		}
+	</style>
+</head>
+
+<body>
+
+	<script type="text/javascript">
+		document.addEventListener("DOMContentLoaded", () => {
+			const boton = document.querySelector(".navbar-burger");
+			const menu = document.querySelector(".navbar-menu");
+			boton.onclick = () => {
+				menu.classList.toggle("is-active");
+				boton.classList.toggle("is-active");
+			};
+		});
+	</script>
+	<section class="section">
+		<div class="columns">
+			<div class="column">
+				<h2 class="is-size-2">Encriptar</h2>
+				<div class="field">
+					
+                    <br>
+					<div class="control">
+                        <label class="label">Contraseña:</label>
+						<input id="contraseñaEncriptar" class="input" type="password"
+							placeholder="Escribe la contraseña">
+					</div>
+				</div>
+                <br>
+                <br>
+				<div class="field">
+					<label class="label">Información para encriptar</label>
+                    <br>
+                    <br>
+					<div class="control">
+						<textarea id="informacionEncriptar" class="textarea"
+							placeholder="Cadena a encriptar"></textarea>
+					</div>
+				</div>
+                <br>
+                <br>
+				<button class="button is-success" id="botonEncriptar">Encriptar</button>
+                <br>
+                <br>
+				<div class="field">
+					<label class="label">Resultado:</label>
+                    <br>
+                    <br>
+					<div class="control">
+						<textarea readonly id="resultadoEncriptacion" class="textarea"></textarea>
+					</div>
+				</div>
+			</div>
+            <br>
+            <br>
+            <br>
+            <hr>
+			<div class="column">
+				<h2 class="is-size-2">Desencriptar</h2>
+				<div class="field">
+
+                    <br>
+					<div class="control">
+                        <label class="label">Contraseña:</label>
+						<input class="input" id="contraseñaDesencriptar" type="password"
+							placeholder="Escribe la contraseña">
+					</div>
+                    <br>
+                    <br>
+				</div>
+				<div class="field">
+					<label class="label">Información para desencriptar</label>
+                    <br>
+                    <br>
+					<div class="control">
+						<textarea class="textarea" id="informacionDesencriptar"
+							placeholder="La cadena cifrada previamente con este programa"></textarea>
+					</div>
+				</div>
+                <br>
+                    <br>
+				<button class="button is-success" id="botonDesencriptar">Desencriptar</button>
+                <br>
+                <br>
+				<div class="field">
+					<label class="label">Resultado:</label>
+                    <br>
+                    <br>
+					<div class="control">
+						<textarea readonly id="resultadoDesencriptacion" class="textarea"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer class="footer">
+		<div class="content has-text-centered">
+			<p>
+                <!--Fabricio-->
+				Para la creacion de ester programa se usó Web Crypto API
+			</p>
+		</div>
+	</footer>
+</body>
+
+</html>

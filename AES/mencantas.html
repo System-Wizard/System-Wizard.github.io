@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ME ENCANTAS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #8EC3DC, #6BA8D1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .heart-container {
+            position: relative;
+            width: 300px;
+            height: 270px;
+            animation: latido 1.2s infinite;
+            margin: 20px;
+        }
+        
+        .heart {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #A00716;
+            transform: rotate(45deg);
+            box-shadow: 0 0 40px rgba(160, 7, 22, 0.6);
+            transition: transform 0.3s ease;
+        }
+        
+        .heart:hover {
+            transform: rotate(45deg) scale(1.05);
+        }
+        
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #A00716;
+        }
+        
+        .heart:before {
+            top: -50%;
+            left: 0;
+        }
+        
+        .heart:after {
+            top: 0;
+            left: -50%;
+        }
+        
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            width: 80%;
+            padding: 15px;
+            border-radius: 10px;
+            
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .tiny-heart {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.7);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes latido {
+            0% { transform: scale(1); }
+            5% { transform: scale(1.1); }
+            10% { transform: scale(1); }
+            15% { transform: scale(1.1); }
+            20% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .heart-container {
+                width: 250px;
+                height: 225px;
+            }
+            
+            .message {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+        </div>
+        
+        <div class="heart-container">
+            <div class="heart"></div>
+            <div class="message">ME ENCANTAS</div>
+        </div>
+        
+        <div class="footer">
+            <p>Chatita linda</p>
+        </div>
+    </div>
+    
+    <div class="hearts"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const heartsContainer = document.querySelector('.hearts');
+            
+            // Crear pequeños corazones flotantes
+            function createFloatingHearts() {
+                for (let i = 0; i < 15; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('tiny-heart');
+                    
+                    // Tamaño aleatorio
+                    const size = Math.random() * 15 + 5;
+                    heart.style.width = `${size}px`;
+                    heart.style.height = `${size}px`;
+                    
+                    // Posición aleatoria
+                    heart.style.left = `${Math.random() * 100}vw`;
+                    heart.style.top = `${Math.random() * 100}vh`;
+                    
+                    // Color aleatorio (tonos rojos/rosas)
+                    const redShade = Math.floor(Math.random() * 55) + 160;
+                    heart.style.backgroundColor = `rgba(${redShade}, 7, 22, ${Math.random() * 0.5 + 0.3})`;
+                    
+                    // Animación con duración aleatoria
+                    const duration = Math.random() * 5 + 5;
+                    heart.style.animation = `float ${duration}s linear forwards`;
+                    
+                    heartsContainer.appendChild(heart);
+                    
+                    // Eliminar el corazón después de que termine la animación
+                    setTimeout(() => {
+                        heart.remove();
+                    }, duration * 1000);
+                }
+            }
+            
+            // Crear corazones iniciales
+            createFloatingHearts();
+            
+            // Crear nuevos corazones periódicamente
+            setInterval(createFloatingHearts, 2000);
+            
+            // Efecto interactivo al hacer clic
+            document.addEventListener('click', function(e) {
+                const clickHeart = document.createElement('div');
+                clickHeart.classList.add('tiny-heart');
+                
+                // Posición en el punto de clic
+                clickHeart.style.left = `${e.clientX}px`;
+                clickHeart.style.top = `${e.clientY}px`;
+                
+                // Tamaño
+                clickHeart.style.width = '20px';
+                clickHeart.style.height = '20px';
+                
+                // Color
+                clickHeart.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                
+                // Animación
+                clickHeart.style.animation = 'float 6s linear forwards';
+                
+                heartsContainer.appendChild(clickHeart);
+                
+                // Eliminar después de la animación
+                setTimeout(() => {
+                    clickHeart.remove();
+                }, 6000);
+            });
+        });
+    </script>
+</body>
+</html>
